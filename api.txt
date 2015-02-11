@@ -1,0 +1,25 @@
+http://api.budejie.com/api/api_open.php?a=list&c=video&per=20&type=41&page=1
+
+c选填的内容有data，video，voice
+a选填的内容有list。newlist
+type选填的内容有10，29，31，41
+order=timewrap标示穿越
+
+图片区 
+a=list type=10时  c=data  			 显示的是精华图片
+a=newlist type=10时  c=data			 显示的是最新图片
+a=list type=10 order=timewrap c=data 		 显示的是穿越图片
+段子区
+a=list type=29时  c=data  			 显示的是精华段子
+a=newlist type=29时  c=data			 显示的是最新段子
+a=list type=29 order=timewrap c=data 		 显示的是穿越段子
+
+声音区
+a=list type=31时  c=voice  			  显示的是精华声音
+a=newlist type=31时  c=voice			  显示的是最新声音
+a=list type=31 order=timewrap c=voice 	          显示的是穿越声音
+
+视频区
+a=list type=41时  c=video  			  显示的是精华视频
+a=newlist type=41时  c=video			  显示的是最新视频
+a=list type=41 order=timewrap c=video 		  显示的是穿越视频
