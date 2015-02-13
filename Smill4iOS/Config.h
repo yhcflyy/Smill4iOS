@@ -16,4 +16,8 @@ typedef NS_ENUM(NSUInteger,CONTROLLER_TYPE){
     CONTROLLER_TYPE_VIDEO
 };
 
+#define CONTENT_TYPE_TEXT  @"段子"
+#define CONTENT_TYPE_PIC   @"图片"
+#define CONTENT_TYPE_VOICE @"声音"
+#define CONTENT_TYPE_VIDEO @"视频"
 #endif

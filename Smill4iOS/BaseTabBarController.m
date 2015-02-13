@@ -7,7 +7,7 @@
 //
 
 #import "BaseTabBarController.h"
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
 @implementation BaseTabBarController
 
@@ -26,35 +26,44 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     //self.delegate=self;
-    BaseTableViewController* textCtl=[[BaseTableViewController alloc] initWithType:CONTROLLER_TYPE_TEXT
-                                                                  uiTableviewStyle:UITableViewStylePlain];
-    textCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"段子" image:[self getImage:@"tabbarEssay.png"]
+    
+    
+    BaseViewController* textCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_TEXT title:CONTENT_TYPE_TEXT];
+    textCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_TEXT image:[self getImage:@"tabbarEssay.png"]
                                            selectedImage:[self getImage:@"tabbarEssayClick.png"]];
     
-    BaseTableViewController* picCtl=[[BaseTableViewController alloc] initWithType:CONTROLLER_TYPE_PICTURE
-                                                                  uiTableviewStyle:UITableViewStylePlain];
-    picCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"图片" image:[self getImage:@"tabbarQuotation.png"]
+    BaseViewController* picCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_PICTURE title:CONTENT_TYPE_PIC];
+    picCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_PIC image:[self getImage:@"tabbarQuotation.png"]
                                              selectedImage:[self getImage:@"tabbarQuotationClick.png"]];
 
-    BaseTableViewController* voiceCtl=[[BaseTableViewController alloc] initWithType:CONTROLLER_TYPE_VOICE
-                                                                 uiTableviewStyle:UITableViewStylePlain];
-    voiceCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"声音" image:[self getImage:@"tabbarVoice.png"]
+    BaseViewController* voiceCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_VOICE title:CONTENT_TYPE_VOICE];
+    voiceCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_VOICE image:[self getImage:@"tabbarVoice.png"]
                                              selectedImage:[self getImage:@"tabbarVoiceClick.png"]];
     
-    BaseTableViewController* videoCtl=[[BaseTableViewController alloc] initWithType:CONTROLLER_TYPE_VIDEO
-                                                                 uiTableviewStyle:UITableViewStylePlain];
-    videoCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"视频" image:[self getImage:@"tabbarVideo.png"]
+    BaseViewController* videoCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_VIDEO title:CONTENT_TYPE_VIDEO];
+    
+    videoCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_VIDEO image:[self getImage:@"tabbarVideo.png"]
                                              selectedImage:[self getImage:@"tabbarVideoClick.png"]];
     
-    self.viewControllers=[NSArray arrayWithObjects:textCtl,picCtl,voiceCtl,videoCtl, nil];
+    NSArray* baseViewCtlArray=[NSArray arrayWithObjects:textCtl,picCtl,voiceCtl,videoCtl, nil];
+    NSMutableArray* navArray=[[NSMutableArray alloc] init];
+    for (BaseViewController* baseCtl in baseViewCtlArray) {
+        UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:baseCtl];
+        [navArray addObject:nav];
+    }
+    
+    
+    self.viewControllers=navArray;
+    
+    
     
     for (UITabBarItem *item in  self.tabBar.items) {
         [self changeTabBarItemFont:item];
     }
     
     [self.tabBar setAlpha:0.95];
-    
 }
+
 
 -(UIImage*)getImage:(NSString*)path{
     return [[UIImage imageNamed:path] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -65,7 +74,7 @@
     [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                         [UIColor redColor], NSForegroundColorAttributeName,
                                         [UIFont fontWithName:@"Arial" size:11.5],NSFontAttributeName,
-                                        nil] forState:UIControlStateHighlighted];
+                                        nil] forState:UIControlStateSelected];
 }
 @end
 

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Config.h"
 
-@interface BaseTableViewController : UITableViewController
+@interface BaseViewController : UIViewController
 @property(nonatomic,assign)CONTROLLER_TYPE type;
 
--(instancetype)initWithType:(CONTROLLER_TYPE)type uiTableviewStyle:(UITableViewStyle)style;
+-(instancetype)initWithType:(CONTROLLER_TYPE)type title:(NSString*)title;
 
 @end
