@@ -1,4 +1,4 @@
 pod 'AFNetworking'
-pod 'Mantle'
+pod 'JSONModel'
 pod 'SDWebImage-ProgressView'
 pod 'SVPullToRefresh'

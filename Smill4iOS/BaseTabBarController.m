@@ -48,11 +48,10 @@
     NSArray* baseViewCtlArray=[NSArray arrayWithObjects:textCtl,picCtl,voiceCtl,videoCtl, nil];
     NSMutableArray* navArray=[[NSMutableArray alloc] init];
     for (BaseViewController* baseCtl in baseViewCtlArray) {
-        UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:baseCtl];
+        UINavigationController *nav=[[UINavigationController alloc] initWithRootViewController:baseCtl];
         [navArray addObject:nav];
     }
-    
-    
+        
     self.viewControllers=navArray;
     
     

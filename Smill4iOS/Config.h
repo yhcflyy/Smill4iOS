@@ -20,4 +20,7 @@ typedef NS_ENUM(NSUInteger,CONTROLLER_TYPE){
 #define CONTENT_TYPE_PIC   @"图片"
 #define CONTENT_TYPE_VOICE @"声音"
 #define CONTENT_TYPE_VIDEO @"视频"
+
+#define API_URL @"http://api.budejie.com/api/api_open.php"
+
 #endif

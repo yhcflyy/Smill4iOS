@@ -7,14 +7,21 @@
 //
 
 #import "BaseViewController.h"
+#import "SVPullToRefresh.h"
+#import "PicViewCell.h"
+#import "AFNetworking.h"
+#import "PicModel.h"
+#import "JSONHTTPClient.h"
 
-@interface BaseViewController ()
+@interface BaseViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 @end
 
 @implementation BaseViewController
 
 @synthesize type=_type;
+
+int curPage;
 
 -(instancetype)initWithType:(CONTROLLER_TYPE)type title:(NSString*)title{
     self=[super init];
@@ -27,14 +34,133 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    curPage=1;
     self.navigationItem.title=self.title;
+    CGRect rect=[[UIScreen mainScreen] bounds];
     
+    self.tableView=[[UITableView alloc]initWithFrame:rect style:UITableViewStylePlain];
+    self.tableView.dataSource=self;
+    self.tableView.delegate=self;
+    [self.view addSubview:self.tableView];
+   
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+   
+    
+     __weak BaseViewController *weakSelf = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refreshData];
+            }];
+   
+    // setup infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf LoadMore];
+            }];
+    
+    [self.tableView triggerPullToRefresh];
+
+}
+
+-(void)refreshData{
+    __weak BaseViewController *weakSelf = self;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":@"1",@"per":@"15"};
+    [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
+        curPage=1;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+-(void)LoadMore{
+    __weak BaseViewController *weakSelf = self;
+    NSString *strPage=[[NSString alloc] initWithFormat:@"%d",curPage++];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":strPage,@"per":@"15"};
+//    [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//       
+//       // NSString* json = (fetch here JSON from Internet) ...
+//        NSError* err = nil;
+//        PicModel* obj = [[PicModel alloc] initWithString:responseObject error:&err];
+//        for (PicInfoModel *item in obj) {
+//            NSLog(@"%@",item.name);
+//        }
+//        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+    
+    
+    [JSONHTTPClient postJSONFromURLWithString:API_URL
+                                       params:parameters
+                                   completion:^(id json, JSONModelError *err) {
+                                       NSLog(@"%@",json);
+                                       //check err, process json ...
+//                                       PicModel* obj = [[PicModel alloc] initWithString:json error:&err];
+//                                               for (PicInfoModel *item in obj) {
+//                                                   NSLog(@"%@",item.name);
+//                                               }
+//                                               [weakSelf.tableView.infiniteScrollingView stopAnimating];
+                                   }];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    //Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier=@"reusedIdentifier";
+    PicViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell){
+        cell= [[PicViewCell alloc] init];
+        cell.contentImageView.image=[UIImage imageNamed:@"2.jpg"];
+        cell.titleLabel.text=@"Hello Text";
+    }
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 200;
 }
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
