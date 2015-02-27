@@ -10,9 +10,7 @@
 #import "SVPullToRefresh.h"
 #import "PicViewCell.h"
 #import "AFNetworking.h"
-#import "PicModel.h"
-#import "JSONHTTPClient.h"
-
+#import "JokeModel.h"
 @interface BaseViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 @end
@@ -74,37 +72,29 @@ int curPage;
 }
 
 -(void)LoadMore{
-    __weak BaseViewController *weakSelf = self;
-    NSString *strPage=[[NSString alloc] initWithFormat:@"%d",curPage++];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":strPage,@"per":@"15"};
-//    [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//       
-//       // NSString* json = (fetch here JSON from Internet) ...
-//        NSError* err = nil;
-//        PicModel* obj = [[PicModel alloc] initWithString:responseObject error:&err];
-//        for (PicInfoModel *item in obj) {
-//            NSLog(@"%@",item.name);
-//        }
-//        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
-    
-    
-    [JSONHTTPClient postJSONFromURLWithString:API_URL
-                                       params:parameters
-                                   completion:^(id json, JSONModelError *err) {
-                                       NSLog(@"%@",json);
-                                       //check err, process json ...
-//                                       PicModel* obj = [[PicModel alloc] initWithString:json error:&err];
-//                                               for (PicInfoModel *item in obj) {
-//                                                   NSLog(@"%@",item.name);
-//                                               }
-//                                               [weakSelf.tableView.infiniteScrollingView stopAnimating];
-                                   }];
-
+        __weak BaseViewController *weakSelf = self;
+//        NSString *strPage=[[NSString alloc] initWithFormat:@"%d",curPage++];
+//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        //NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":strPage,@"per":@"15"};
+//        [manager GET:@"http://api.openweathermap.org/data/2.5/weather?lat=37.785834&lon=-122.406417&units=imperial" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            //NSLog(@"%@",responseObject);
+//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject
+//                                                                 options:NSJSONReadingMutableContainers
+//                                                                   error:nil];
+//            //将JSON数据和Model的属性进行绑定
+//            CATProfile *model = [MTLJSONAdapter modelOfClass:[CATProfile class]
+//                                          fromJSONDictionary:dict
+//                                                       error:nil];
+//            NSLog(@"%@",model);            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"Error: %@", error);
+//        }];
+    NSString* strjson=@"{\"id\": 7,\"text\": \"There used to be a street named after Chuck Norris but it was changed because nobody crosses Chuck Norris and lives\",\"tags\": [{ \"id\":1, \"tag\":\"lethal\" },{ \"id\":2, \"tag\":\"new\" }]}";
+    NSData *jsonData=[strjson dataUsingEncoding:NSUTF8StringEncoding];
+    JokeModel *joke = [JokeModel arrayOfModelsFromData:jsonData error:nil];
+    NSLog(joke);
+    //[weakSelf.tableView.infiniteScrollingView stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning {

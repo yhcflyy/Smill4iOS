@@ -6,10 +6,7 @@
 //  Copyright (c) 2015年 flyy. All rights reserved.
 //
 
-#import "PicModel.h"
+#import "JokeModel.h"
 
-@implementation PicModel
-
-
-
+@implementation JokeModel
 @end
