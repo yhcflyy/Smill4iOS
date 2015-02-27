@@ -6,7 +6,8 @@
 //  Copyright (c) 2015年 flyy. All rights reserved.
 //
 
-#import "JokeModel.h"
+#import "JsonModel.h"
+#import "TestModel.h"
 
-@implementation JokeModel
+@implementation TestModel 
 @end

@@ -22,9 +22,7 @@
     self.window.rootViewController=[BaseTabBarController shareTabBarCtl];
     self.window.backgroundColor=[UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-
-    
+ 
     return YES;
 }
 

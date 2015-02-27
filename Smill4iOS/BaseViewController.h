@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Config.h"
+#import "SVPullToRefresh.h"
+#import "PicViewCell.h"
+#import "AFNetworking.h"
+#import "PicModel.h"
 
 @interface BaseViewController : UIViewController
 @property(nonatomic,assign)CONTROLLER_TYPE type;
-
+@property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic,strong)NSMutableArray* modelsArray;
 -(instancetype)initWithType:(CONTROLLER_TYPE)type title:(NSString*)title;
+
+-(void)refreshData;
+-(void)LoadMore;
 
 @end

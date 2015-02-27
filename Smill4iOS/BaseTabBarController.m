@@ -8,6 +8,10 @@
 
 #import "BaseTabBarController.h"
 #import "BaseViewController.h"
+#import "PicViewController.h"
+#import "TextViewController.h"
+#import "VideoViewController.h"
+#import "VoiceViewController.h"
 
 @implementation BaseTabBarController
 
@@ -19,6 +23,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,^{
         tabBarCtl=[[self alloc] init];
+        tabBarCtl.selectedIndex=1;
     });
     return tabBarCtl;
 }
@@ -26,21 +31,20 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     //self.delegate=self;
-    
-    
-    BaseViewController* textCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_TEXT title:CONTENT_TYPE_TEXT];
+   
+    TextViewController* textCtl=[[TextViewController alloc] initWithType:CONTROLLER_TYPE_TEXT title:CONTENT_TYPE_TEXT];
     textCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_TEXT image:[self getImage:@"tabbarEssay.png"]
                                            selectedImage:[self getImage:@"tabbarEssayClick.png"]];
     
-    BaseViewController* picCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_PICTURE title:CONTENT_TYPE_PIC];
+    PicViewController* picCtl=[[PicViewController alloc] initWithType:CONTROLLER_TYPE_PICTURE title:CONTENT_TYPE_PIC];
     picCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_PIC image:[self getImage:@"tabbarQuotation.png"]
                                              selectedImage:[self getImage:@"tabbarQuotationClick.png"]];
 
-    BaseViewController* voiceCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_VOICE title:CONTENT_TYPE_VOICE];
+    VoiceViewController* voiceCtl=[[VoiceViewController alloc] initWithType:CONTROLLER_TYPE_VOICE title:CONTENT_TYPE_VOICE];
     voiceCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_VOICE image:[self getImage:@"tabbarVoice.png"]
                                              selectedImage:[self getImage:@"tabbarVoiceClick.png"]];
     
-    BaseViewController* videoCtl=[[BaseViewController alloc] initWithType:CONTROLLER_TYPE_VIDEO title:CONTENT_TYPE_VIDEO];
+    VideoViewController* videoCtl=[[VideoViewController alloc] initWithType:CONTROLLER_TYPE_VIDEO title:CONTENT_TYPE_VIDEO];
     
     videoCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_VIDEO image:[self getImage:@"tabbarVideo.png"]
                                              selectedImage:[self getImage:@"tabbarVideoClick.png"]];
@@ -54,12 +58,9 @@
         
     self.viewControllers=navArray;
     
-    
-    
     for (UITabBarItem *item in  self.tabBar.items) {
         [self changeTabBarItemFont:item];
     }
-    
     [self.tabBar setAlpha:0.95];
 }
 
