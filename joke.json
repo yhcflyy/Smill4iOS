@@ -1,8 +1,18 @@
 {
-    "id": 7,
-    "text": "There used to be a street named after Chuck Norris but it was changed because nobody crosses Chuck Norris and lives",
-    "tags": [
-        { "id":1, "tag":"lethal" },
-        { "id":2, "tag":"new" }
+    "info": "sth useful",
+    "name": "flyy",
+    "owner": {
+        "id": 99,
+        "name": "AlexanderSchuch"
+    },
+    "list": [
+        {
+            "ID": "123",
+            "url": "123"
+        },
+        {
+            "ID": "124",
+            "url": "www123"
+        }
     ]
 }

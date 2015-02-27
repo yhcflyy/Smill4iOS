@@ -90,12 +90,23 @@ int curPage;
 //        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //            NSLog(@"Error: %@", error);
 //        }];
-    NSString* strjson=@"{\"id\": 7,\"text\": \"There used to be a street named after Chuck Norris but it was changed because nobody crosses Chuck Norris and lives\",\"tags\": [{ \"id\":1, \"tag\":\"lethal\" },{ \"id\":2, \"tag\":\"new\" }]}";
-    NSData *jsonData=[strjson dataUsingEncoding:NSUTF8StringEncoding];
-    JokeModel *joke = [JokeModel arrayOfModelsFromData:jsonData error:nil];
-    NSLog(joke);
-    //[weakSelf.tableView.infiniteScrollingView stopAnimating];
+
+    
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/yhcflyy/Smill4iOS/develop/joke.json"];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url]
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse* response, NSData* data, NSError* connectionError){
+                               
+                               if (!connectionError) {
+                                   NSArray* jokes  = [JokeModel arrayOfModelsFromData:data error:nil];
+                                   NSLog(@"joke:%d",jokes.count);
+                                   [weakSelf.tableView.infiniteScrollingView stopAnimating];
+
+                               }
+                           }];
+    //
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
