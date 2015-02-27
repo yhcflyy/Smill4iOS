@@ -7,6 +7,7 @@
 //
 
 #import "PicViewController.h"
+#import "UIImageView+WebCache.h"
 
 @implementation PicViewController
 int curPage;
@@ -22,6 +23,7 @@ int curPage;
         [self.modelsArray removeAllObjects];
         [self.modelsArray addObjectsFromArray:picModel.list];
         NSLog(@"%d",picModel.totalPage);
+        [self.tableView reloadData];
         [weakSelf.tableView.pullToRefreshView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -40,6 +42,8 @@ int curPage;
         curPage++;
         PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
         [self.modelsArray addObjectsFromArray:picModel.list];
+        NSLog(@"count:%lu",(unsigned long)self.modelsArray.count);
+        [self.tableView reloadData];
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -48,10 +52,6 @@ int curPage;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"%lu",(unsigned long)self.modelsArray.count);
-    if(curPage == 1)
-        return 5;
-    else
      return self.modelsArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -59,14 +59,18 @@ int curPage;
     PicViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell){
         cell= [[PicViewCell alloc] init];
-        cell.contentImageView.image=[UIImage imageNamed:@"2.jpg"];
+        UIImage* image=[UIImage imageNamed:@"2.jpg"];
+        InfoModel *infoModel=self.modelsArray[indexPath.row];
+        NSLog(@"%d",indexPath.row);
+        NSURL *url=[[NSURL alloc]initWithString:infoModel.imageUrl];
+        [cell.contentImageView sd_setImageWithURL:url placeholderImage:image];
         cell.titleLabel.text=@"Hello Text";
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200;
+    return 420;
 }
 
 @end

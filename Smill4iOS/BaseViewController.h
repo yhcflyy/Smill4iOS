@@ -16,7 +16,7 @@
 @interface BaseViewController : UIViewController
 @property(nonatomic,assign)CONTROLLER_TYPE type;
 @property(nonatomic,strong)UITableView* tableView;
-@property(nonatomic,strong)NSMutableArray* modelsArray;
+@property(nonatomic,strong)NSMutableArray<InfoModel>* modelsArray;
 -(instancetype)initWithType:(CONTROLLER_TYPE)type title:(NSString*)title;
 
 -(void)refreshData;

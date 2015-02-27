@@ -12,7 +12,7 @@
 
 - (instancetype)init
 {
-    return [self initWithFrame:CGRectMake(0, 0, self.frame.size.width, 100)];
+    return [self initWithFrame:CGRectMake(0, 0, self.frame.size.width, 200)];
 }
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -25,7 +25,7 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    self.contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width - 20, self.frame.size.height - 10)];
+    self.contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width - 20, 400)];
     [self.contentView addSubview:self.contentImageView];
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
