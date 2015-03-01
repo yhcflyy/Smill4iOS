@@ -8,6 +8,7 @@
 
 #import "PicViewController.h"
 #import "UIImageView+WebCache.h"
+#import "UIImageView+ProgressView.h"
 
 @implementation PicViewController
 int curPage;
@@ -57,15 +58,18 @@ int curPage;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier=@"reusedIdentifier";
     PicViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell){
+    if(cell == nil){
         cell= [[PicViewCell alloc] init];
-        UIImage* image=[UIImage imageNamed:@"2.jpg"];
-        InfoModel *infoModel=self.modelsArray[indexPath.row];
-        NSLog(@"%d",indexPath.row);
-        NSURL *url=[[NSURL alloc]initWithString:infoModel.imageUrl];
-        [cell.contentImageView sd_setImageWithURL:url placeholderImage:image];
-        cell.titleLabel.text=@"Hello Text";
     }
+    UIImage* image=[UIImage imageNamed:@"2.jpg"];
+    InfoModel *infoModel=self.modelsArray[indexPath.row];
+    NSLog(@"%d",indexPath.row);
+    NSURL *url=[[NSURL alloc]initWithString:infoModel.imageUrl];
+    //[cell.contentImageView sd_setImageWithURL:url placeholderImage:image];
+
+    UIProgressView *pro=[[UIProgressView alloc]initWithFrame:[cell frame]];
+    [cell.contentImageView sd_setImageWithURL:url placeholderImage:image usingProgressView:pro];
+    cell.titleLabel.text=@"Hello Text";
     return cell;
 }
 
