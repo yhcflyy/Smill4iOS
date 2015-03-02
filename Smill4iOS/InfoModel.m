@@ -18,7 +18,7 @@
                                                        @"text": @"context",
                                                        @"width": @"picWidth",
                                                        @"height": @"picHeight",
-                                                       @"cdn_img": @"imageUrl",
+                                                       @"image1": @"imageUrl",
                                                        @"is_gif": @"isGif"
                                                        }];
 }

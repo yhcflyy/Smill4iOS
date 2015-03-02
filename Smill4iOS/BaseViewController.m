@@ -32,14 +32,14 @@ int curPage;
     [super viewDidLoad];
     curPage=1;
     self.navigationItem.title=self.title;
-    CGRect rect=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect rect=CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 120);
     self.tableView=[[UITableView alloc]initWithFrame:rect style:UITableViewStylePlain];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     [self.view addSubview:self.tableView];
    
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.modelsArray=[[NSMutableArray alloc] init];
      __weak BaseViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -50,7 +50,14 @@ int curPage;
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf LoadMore];
             }];
+    
     [self.tableView triggerPullToRefresh];
+    [self.tableView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
+    [self.tableView.pullToRefreshView setTitle:@"释放更新" forState:SVPullToRefreshStateTriggered];
+    [self.tableView.pullToRefreshView setTitle:@"更新..." forState:SVPullToRefreshStateLoading];
+    rect=self.tableView.pullToRefreshView.frame;
+    rect=CGRectMake(50, rect.origin.y, rect.size.width, rect.size.height);
+    self.tableView.pullToRefreshView.frame=rect;
 }
 -(void)refreshData{}
 -(void)LoadMore{}

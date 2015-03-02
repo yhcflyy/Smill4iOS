@@ -12,5 +12,6 @@
 
 @property(strong,nonatomic) UIImageView *contentImageView;
 @property(strong,nonatomic) UILabel *titleLabel;
+@property(assign,nonatomic) int height;
 
 @end

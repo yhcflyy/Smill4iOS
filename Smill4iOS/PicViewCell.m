@@ -10,26 +10,26 @@
 
 @implementation PicViewCell
 
-- (instancetype)init
-{
-    return [self initWithFrame:CGRectMake(0, 0, self.frame.size.width, 200)];
-}
+
+
 -(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self awakeFromNib];
+        [self setFrame:frame];
+        [self initContent];
     }
+    
     return self;
 }
--(void)awakeFromNib
+-(void)initContent
 {
-    [super awakeFromNib];
-    self.contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width - 20, 400)];
+    self.contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, self.frame.size.width, self.frame.size.height)];
+    self.contentImageView.contentMode=UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:self.contentImageView];
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
-    [self.contentView addSubview:self.titleLabel];
+//    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+//    [self.contentView addSubview:self.titleLabel];
 }
 
 -(NSString *)reuseIdentifier
