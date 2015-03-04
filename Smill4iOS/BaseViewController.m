@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 
-@interface BaseViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface BaseViewController ()<PSCollectionViewDataSource,PSCollectionViewDelegate>
 
 @end
 
@@ -33,31 +33,30 @@ int curPage;
     curPage=1;
     self.navigationItem.title=self.title;
     CGRect rect=CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 120);
-    self.tableView=[[UITableView alloc]initWithFrame:rect style:UITableViewStylePlain];
-    self.tableView.dataSource=self;
-    self.tableView.delegate=self;
-    [self.view addSubview:self.tableView];
+    self.collectionView=[[PSCollectionView alloc]initWithFrame:rect ];
+    __weak BaseViewController* weakSelf=self;
+    self.collectionView.collectionViewDataSource=weakSelf;
+    self.collectionView.collectionViewDelegate=weakSelf;
+    [self.view addSubview:self.collectionView];
    
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     self.modelsArray=[[NSMutableArray alloc] init];
-     __weak BaseViewController *weakSelf = self;
-    [self.tableView addPullToRefreshWithActionHandler:^{
+    [self.collectionView addPullToRefreshWithActionHandler:^{
         [weakSelf refreshData];
             }];
    
     // setup infinite scrolling
-    [self.tableView addInfiniteScrollingWithActionHandler:^{
+    [self.collectionView addInfiniteScrollingWithActionHandler:^{
         [weakSelf LoadMore];
             }];
     
-    [self.tableView triggerPullToRefresh];
-    [self.tableView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
-    [self.tableView.pullToRefreshView setTitle:@"释放更新" forState:SVPullToRefreshStateTriggered];
-    [self.tableView.pullToRefreshView setTitle:@"更新..." forState:SVPullToRefreshStateLoading];
-    rect=self.tableView.pullToRefreshView.frame;
+    [self.collectionView triggerPullToRefresh];
+    [self.collectionView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
+    [self.collectionView.pullToRefreshView setTitle:@"释放更新" forState:SVPullToRefreshStateTriggered];
+    [self.collectionView.pullToRefreshView setTitle:@"更新..." forState:SVPullToRefreshStateLoading];
+    rect=self.collectionView.pullToRefreshView.frame;
     rect=CGRectMake(50, rect.origin.y, rect.size.width, rect.size.height);
-    self.tableView.pullToRefreshView.frame=rect;
+    self.collectionView.pullToRefreshView.frame=rect;
 }
 -(void)refreshData{}
 -(void)LoadMore{}
@@ -67,11 +66,20 @@ int curPage;
     //Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (Class)collectionView:(PSCollectionView *)collectionView cellClassForRowAtIndex:(NSInteger)index {
+    return [PSCollectionViewCell class];
+}
+
+- (NSInteger)numberOfRowsInCollectionView:(PSCollectionView *)collectionView {
     return 0;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (UIView *)collectionView:(PSCollectionView *)collectionView cellForRowAtIndex:(NSInteger)index {
     return nil;
+}
+
+- (CGFloat)collectionView:(PSCollectionView *)collectionView heightForRowAtIndex:(NSInteger)index {
+    return 0.0;
 }
 
 @end

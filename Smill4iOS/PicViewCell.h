@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PicViewCell : UITableViewCell
+#import "PSCollectionViewCell.h"
+@interface PicViewCell : PSCollectionViewCell
 
 @property(strong,nonatomic) UIImageView *contentImageView;
 @property(strong,nonatomic) UILabel *titleLabel;

@@ -13,6 +13,9 @@
 @implementation PicViewController
 int curPage;
 
+
+
+
 -(void)refreshData{
     NSLog(@"width:%f.height:%f",[[UIScreen mainScreen] bounds].size.width,[[UIScreen mainScreen] bounds].size.height);
     __weak BaseViewController *weakSelf = self;
@@ -20,15 +23,19 @@ int curPage;
     NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":@"1",@"per":@"15"};
     [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",operation.response.URL);
+        //NSLog(@"%@",responseObject);
         curPage=1;
         PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
         [self.modelsArray removeAllObjects];
         [self.modelsArray addObjectsFromArray:picModel.list];
-        [self.tableView reloadData];
-        [weakSelf.tableView.pullToRefreshView stopAnimating];
+        for (InfoModel* pic in self.modelsArray) {
+            NSLog(@"%@",pic.imageUrl);
+        }
+        [self dataSourceDidLoad];
+        [weakSelf.collectionView.pullToRefreshView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        [weakSelf.tableView.pullToRefreshView stopAnimating];
+        [weakSelf.collectionView.pullToRefreshView stopAnimating];
     }];
 }
 
@@ -42,66 +49,62 @@ int curPage;
         dispatch_main_sync_safe(^{
             PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
             [self.modelsArray addObjectsFromArray:picModel.list];
-            [self.tableView reloadData];
-            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            //[self.collectionView reloadData];
+            [self dataSourceDidLoad];
+            [weakSelf.collectionView.infiniteScrollingView stopAnimating];
 
         });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         curPage--;
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [weakSelf.collectionView.infiniteScrollingView stopAnimating];
     }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-     return self.modelsArray.count;
+- (void)dataSourceDidLoad {
+    [self.collectionView reloadData];
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier=@"reusedIdentifier";
-    int cellWidth=[[UIScreen mainScreen] bounds].size.width - 20;
-    UIImage* image=[UIImage imageNamed:@"2.jpg"];
-    InfoModel *infoModel=self.modelsArray[indexPath.row];
-    NSURL *url=[[NSURL alloc]initWithString:infoModel.imageUrl];
-    int height=((CGFloat)infoModel.picHeight/infoModel.picWidth)*cellWidth;
-    NSLog(@"screnn:%d",cellWidth);
-    NSLog(@"per:%f,rw:%d,rh:%d,%d,publisher:%@",(CGFloat)infoModel.picHeight/infoModel.picWidth,infoModel.picWidth,infoModel.picHeight,height,infoModel.context);
-    
-    PicViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+
+
+
+
+
+//- (NSInteger)numberOfRowsInCollectionView:(PSCollectionView *)collectionView {
+//    // NSLog(@"count:%d",self.modelsArray.count);
+//    return 2;//self.modelsArray.count;
+//}
+
+- (NSInteger)numberOfRowsInCollectionView:(PSCollectionView *)collectionView {
+    return [self.modelsArray count];
+}
+
+- (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView cellForRowAtIndex:(NSInteger)index {
+
+    NSURL *url=[[NSURL alloc]initWithString:@"http://ww2.sinaimg.cn/large/005OPYkojw1ept1p5ma09j30dc080q32.jpg"];
+    //        int height=((CGFloat)infoModel.picHeight/infoModel.picWidth)*cellWidth;
+    PicViewCell *cell=(PicViewCell*)[self.collectionView dequeueReusableViewForClass:[PicViewCell class]];
     if(cell == nil){
-        CGRect cellFrame = CGRectMake(0, 0,cellWidth, height);
+        CGRect cellFrame = CGRectMake(0, 0,100 , 100);
         cell= [[PicViewCell alloc] initWithFrame:cellFrame];
     }
-//    CGRect cellFrame = [cell frame];
-//    cellFrame.origin = CGPointMake(0, 0);
-//    cellFrame.size.height=height;
-//    [cell setFrame:cellFrame];
     
+    [cell collectionView:self.collectionView fillCellWithObject:self atIndex:index];
     CGRect rect=CGRectMake(cell.bounds.origin.x + 20, cell.bounds.origin.y, cell.bounds.size.width - 40, cell.bounds.size.height);
     UIProgressView *pro=[[UIProgressView alloc]initWithFrame:rect];
     [cell.contentImageView sd_setImageWithURL:url  usingProgressView:pro];
     cell.titleLabel.text=@"Hello Text";
     return cell;
+
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)collectionView:(PSCollectionView *)collectionView heightForRowAtIndex:(NSInteger)index {
     
-//    CGRect rect=tableView.bounds;
-//    InfoModel *infoModel=self.modelsArray[indexPath.row];
-//    int height=((CGFloat)infoModel.picHeight/infoModel.picWidth)*rect.size.width;
-//    tableView.delegate=nil;
-//    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
-//    CGRect rect1=CGRectMake(cell.bounds.origin.x,cell.bounds.origin.y, cell.bounds.size.width,cell.bounds.size.height);
-//    cell.bounds=rect1;
-//    tableView.delegate=self;
+    return 400;
+}
+
+- (void)collectionView:(PSCollectionView *)collectionView didSelectCell:(PSCollectionViewCell *)cell atIndex:(NSInteger)index {
     
-    int cellWidth=[[UIScreen mainScreen] bounds].size.width - 20;
-    InfoModel *infoModel=self.modelsArray[indexPath.row];
-    int height=((CGFloat)infoModel.picHeight/infoModel.picWidth)*cellWidth;
-    return height + 10;
-    
-//    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    return cell.frame.size.height + 10;
 }
 
 @end
