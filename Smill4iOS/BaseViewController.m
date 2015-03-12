@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 
-@interface BaseViewController ()<PSCollectionViewDataSource,PSCollectionViewDelegate>
+@interface BaseViewController ()<UIScrollViewDelegate,PSCollectionViewDataSource,PSCollectionViewDelegate>
 
 @end
 
@@ -28,35 +28,50 @@ int curPage;
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    curPage=1;
-    self.navigationItem.title=self.title;
-    CGRect rect=CGRectMake(0, 70, self.view.bounds.size.width, self.view.bounds.size.height - 120);
-    self.collectionView=[[PSCollectionView alloc]initWithFrame:rect ];
+-(void)viewDidAppear:(BOOL)animated{
     __weak BaseViewController* weakSelf=self;
-    self.collectionView.collectionViewDataSource=weakSelf;
-    self.collectionView.collectionViewDelegate=weakSelf;
-    [self.view addSubview:self.collectionView];
-   
-    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    self.modelsArray=[[NSMutableArray alloc] init];
+    
+    
     [self.collectionView addPullToRefreshWithActionHandler:^{
         [weakSelf refreshData];
-            }];
-   
+    }];
+    
     // setup infinite scrolling
     [self.collectionView addInfiniteScrollingWithActionHandler:^{
         [weakSelf LoadMore];
-            }];
+    }];
+    
     
     [self.collectionView triggerPullToRefresh];
     [self.collectionView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
     [self.collectionView.pullToRefreshView setTitle:@"释放更新" forState:SVPullToRefreshStateTriggered];
     [self.collectionView.pullToRefreshView setTitle:@"更新..." forState:SVPullToRefreshStateLoading];
-    rect=self.collectionView.pullToRefreshView.frame;
-    rect=CGRectMake(50, rect.origin.y, rect.size.width, rect.size.height);
-    self.collectionView.pullToRefreshView.frame=rect;
+   }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.edgesForExtendedLayout=UIRectEdgeNone;
+    curPage=1;
+    self.navigationItem.title=self.title;
+    [self.view setBackgroundColor:[UIColor lightGrayColor]];
+    CGRect rect=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    self.collectionView=[[PSCollectionView alloc]initWithFrame:rect ];
+    self.collectionView.backgroundColor=[UIColor lightGrayColor];
+    self.collectionView.delegate=self;
+    self.collectionView.collectionViewDataSource=self;
+    self.collectionView.collectionViewDelegate=self;
+    self.collectionView.numColsPortrait = 1;
+    [self.view addSubview:self.collectionView];
+   
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    self.modelsArray=(NSMutableArray<InfoModel>*)[[NSMutableArray alloc] init];
+    self.objectIdArray=[[NSMutableArray alloc]init];
+
+
+  
+//    rect=self.collectionView.pullToRefreshView.frame;
+//    rect=CGRectMake(50, rect.origin.y, rect.size.width, rect.size.height);
+//    self.collectionView.pullToRefreshView.frame=rect;
 }
 -(void)refreshData{}
 -(void)LoadMore{}

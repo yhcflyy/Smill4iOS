@@ -19,5 +19,5 @@
 @property(assign,nonatomic)int picHeight;
 @property(strong,nonatomic)NSString* imageUrl;
 @property(assign,nonatomic)BOOL isGif;
-
+@property(assign,nonatomic)int modelID;
 @end

@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PSCollectionViewCell.h"
+#import "THProgressView.h"
+
 @interface PicViewCell : PSCollectionViewCell
 
 @property(strong,nonatomic) UIImageView *contentImageView;
 @property(strong,nonatomic) UILabel *titleLabel;
+@property(strong,nonatomic) THProgressView *progressView;
 @property(assign,nonatomic) int height;
+@property(assign,nonatomic) int width;
 
 @end

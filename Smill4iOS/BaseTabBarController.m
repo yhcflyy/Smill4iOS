@@ -31,7 +31,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     //self.delegate=self;
-   
+
     TextViewController* textCtl=[[TextViewController alloc] initWithType:CONTROLLER_TYPE_TEXT title:CONTENT_TYPE_TEXT];
     textCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_TEXT image:[self getImage:@"tabbarEssay.png"]
                                            selectedImage:[self getImage:@"tabbarEssayClick.png"]];
@@ -53,6 +53,7 @@
     NSMutableArray* navArray=[[NSMutableArray alloc] init];
     for (BaseViewController* baseCtl in baseViewCtlArray) {
         UINavigationController *nav=[[UINavigationController alloc] initWithRootViewController:baseCtl];
+        //nav.navigationBar.translucent = YES;
         [navArray addObject:nav];
     }
         

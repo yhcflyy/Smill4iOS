@@ -8,5 +8,4 @@
 
 #import "BaseViewController.h"
 @interface PicViewController : BaseViewController
-@property(strong,nonatomic)PicViewCell *mycell;
 @end

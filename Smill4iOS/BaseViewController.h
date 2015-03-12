@@ -19,6 +19,7 @@
 @property(nonatomic,assign)CONTROLLER_TYPE type;
 @property(nonatomic,strong)PSCollectionView* collectionView;
 @property(nonatomic,strong)NSMutableArray<InfoModel>* modelsArray;
+@property(nonatomic,strong)NSMutableArray* objectIdArray;
 -(instancetype)initWithType:(CONTROLLER_TYPE)type title:(NSString*)title;
 
 -(void)refreshData;

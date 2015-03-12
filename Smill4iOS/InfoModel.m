@@ -18,8 +18,9 @@
                                                        @"text": @"context",
                                                        @"width": @"picWidth",
                                                        @"height": @"picHeight",
-                                                       @"image1": @"imageUrl",
-                                                       @"is_gif": @"isGif"
+                                                       @"cdn_img": @"imageUrl",
+                                                       @"is_gif": @"isGif",
+                                                       @"id": @"modelID"
                                                        }];
 }
 

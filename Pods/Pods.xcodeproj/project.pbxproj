@@ -442,14 +442,14 @@
 			path = JSONModel;
 			sourceTree = "<group>";
 		};
-		56480395FE2D62543A2FC241 /* ç */ = {
+		56480395FE2D62543A2FC241 /* UIImageView+ProgressView */ = {
 			isa = PBXGroup;
 			children = (
 				F2692C5AA8D2F19779CE16B2 /* UIImageView+ProgressView.h */,
 				BDB36B01725AB22ED8BC3716 /* UIImageView+ProgressView.m */,
 				FE732173B6ED4302ED166765 /* Support Files */,
 			);
-			name = "ç";
+			name = "UIImageView+ProgressView";
 			path = "SDWebImage-ProgressView";
 			sourceTree = "<group>";
 		};
@@ -593,7 +593,7 @@
 				CA02207869FEFCC11CEC6DE3 /* AFNetworking */,
 				46195991B4494202B6C448F9 /* JSONModel */,
 				0E461F020774ECFC2886262E /* SDWebImage */,
-				56480395FE2D62543A2FC241 /* ç */,
+				56480395FE2D62543A2FC241 /* UIImageView+ProgressView */,
 				66FAB378B40CA05D3995601D /* SVPullToRefresh */,
 			);
 			name = Pods;

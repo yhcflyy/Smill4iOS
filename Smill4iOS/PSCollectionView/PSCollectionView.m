@@ -200,7 +200,6 @@ static inline NSInteger PSCollectionIndexForKey(NSString *key) {
         
         if (diff > self.offsetThreshold) {
             self.lastOffset = self.contentOffset.y;
-            
             [self removeAndAddCellsIfNecessary];
         }
     }

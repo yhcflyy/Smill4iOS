@@ -10,49 +10,49 @@
 #import "UIImageView+WebCache.h"
 #import "UIImageView+ProgressView.h"
 
+#define MARGIN 8.0
+
+
 @implementation PicViewController
 int curPage;
 
 
-
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    [self refreshData];
+}
 
 -(void)refreshData{
-    NSLog(@"width:%f.height:%f",[[UIScreen mainScreen] bounds].size.width,[[UIScreen mainScreen] bounds].size.height);
     __weak BaseViewController *weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":@"1",@"per":@"15"};
     [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",operation.response.URL);
-        //NSLog(@"%@",responseObject);
         curPage=1;
         PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
         [self.modelsArray removeAllObjects];
+        [self.objectIdArray removeAllObjects];
         [self.modelsArray addObjectsFromArray:picModel.list];
-        for (InfoModel* pic in self.modelsArray) {
-            NSLog(@"%@",pic.imageUrl);
-        }
         [self dataSourceDidLoad];
         [weakSelf.collectionView.pullToRefreshView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
         [weakSelf.collectionView.pullToRefreshView stopAnimating];
     }];
 }
 
 -(void)LoadMore{
     __weak BaseViewController *weakSelf = self;
-    NSString *strPage=[[NSString alloc] initWithFormat:@"%d",curPage++];
+    NSString *strPage=[[NSString alloc] initWithFormat:@"%d",++curPage];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":strPage,@"per":@"15"};
     [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",operation.response.URL);
         dispatch_main_sync_safe(^{
             PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
             [self.modelsArray addObjectsFromArray:picModel.list];
-            //[self.collectionView reloadData];
             [self dataSourceDidLoad];
             [weakSelf.collectionView.infiniteScrollingView stopAnimating];
-
         });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -69,38 +69,50 @@ int curPage;
 
 
 
-
-//- (NSInteger)numberOfRowsInCollectionView:(PSCollectionView *)collectionView {
-//    // NSLog(@"count:%d",self.modelsArray.count);
-//    return 2;//self.modelsArray.count;
-//}
-
 - (NSInteger)numberOfRowsInCollectionView:(PSCollectionView *)collectionView {
     return [self.modelsArray count];
 }
 
 - (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView cellForRowAtIndex:(NSInteger)index {
 
-    NSURL *url=[[NSURL alloc]initWithString:@"http://ww2.sinaimg.cn/large/005OPYkojw1ept1p5ma09j30dc080q32.jpg"];
-    //        int height=((CGFloat)infoModel.picHeight/infoModel.picWidth)*cellWidth;
+    InfoModel *infoModel=self.modelsArray[index];
     PicViewCell *cell=(PicViewCell*)[self.collectionView dequeueReusableViewForClass:[PicViewCell class]];
     if(cell == nil){
-        CGRect cellFrame = CGRectMake(0, 0,100 , 100);
-        cell= [[PicViewCell alloc] initWithFrame:cellFrame];
+        cell= [[PicViewCell alloc] initWithFrame:CGRectZero];
     }
-    
-    [cell collectionView:self.collectionView fillCellWithObject:self atIndex:index];
-    CGRect rect=CGRectMake(cell.bounds.origin.x + 20, cell.bounds.origin.y, cell.bounds.size.width - 40, cell.bounds.size.height);
-    UIProgressView *pro=[[UIProgressView alloc]initWithFrame:rect];
-    [cell.contentImageView sd_setImageWithURL:url  usingProgressView:pro];
-    cell.titleLabel.text=@"Hello Text";
+
+    cell.backgroundColor=[UIColor whiteColor];
+    [cell collectionView:self.collectionView fillCellWithObject:infoModel atIndex:index];
     return cell;
 
 }
 
 - (CGFloat)collectionView:(PSCollectionView *)collectionView heightForRowAtIndex:(NSInteger)index {
+     InfoModel *infoModel=self.modelsArray[index];
     
-    return 400;
+    CGFloat height = 0.0;
+    CGFloat width=self.view.frame.size.width - MARGIN*2;
+    
+    height += MARGIN;
+    
+    // Image
+    CGFloat objectWidth =infoModel.picWidth;
+    CGFloat objectHeight =infoModel.picHeight;
+    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+    height += scaledHeight;
+    // Label
+    //基本设置
+    UIFont *textFont = [UIFont systemFontOfSize:17.0f];
+    CGSize size = CGSizeMake(300, MAXFLOAT);
+    //获取当前那本属性
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil];
+    //实际尺寸
+    CGSize actualSize = [infoModel.context boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
+    
+    
+    height += actualSize.height;
+    
+    return height;
 }
 
 - (void)collectionView:(PSCollectionView *)collectionView didSelectCell:(PSCollectionViewCell *)cell atIndex:(NSInteger)index {
