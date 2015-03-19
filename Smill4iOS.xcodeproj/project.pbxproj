@@ -41,10 +41,13 @@
 		08C3E7581A8C9713009C97C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C3E7381A8C9713009C97C2 /* main.m */; };
 		08D32D6F1A9EC12400DB1BB7 /* PicViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D32D6E1A9EC12400DB1BB7 /* PicViewCell.m */; };
 		08E60B8B1AA0556300864F82 /* PicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E60B8A1AA0556300864F82 /* PicViewController.m */; };
-		08E60B8E1AA05C0100864F82 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E60B8D1AA05C0100864F82 /* TextViewController.m */; };
 		08E60B911AA05C1C00864F82 /* VoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E60B901AA05C1C00864F82 /* VoiceViewController.m */; };
 		08E60B941AA05C3200864F82 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E60B931AA05C3200864F82 /* VideoViewController.m */; };
 		790ECB0EA911EF1CB481A7D0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202B115954F51CEA088CD83B /* libPods.a */; };
+		F74C2E721ABAC3CF005FEBAD /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C2E711ABAC3CF005FEBAD /* TextViewController.m */; };
+		F74C2E751ABAC442005FEBAD /* BaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C2E741ABAC442005FEBAD /* BaseViewCell.m */; };
+		F74C2E781ABAC5BB005FEBAD /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C2E771ABAC5BB005FEBAD /* BaseModel.m */; };
+		F74C2E7C1ABAC6B8005FEBAD /* TextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74C2E7B1ABAC6B8005FEBAD /* TextModel.m */; };
 		F7F3D7C61AB15E9B003367F5 /* place.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F7F3D7C51AB15E9B003367F5 /* place.jpg */; };
 		F7F3D7CB1AB17C42003367F5 /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F3D7C81AB17C42003367F5 /* PSCollectionView.m */; };
 		F7F3D7CC1AB17C42003367F5 /* PSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F3D7CA1AB17C42003367F5 /* PSCollectionViewCell.m */; };
@@ -108,8 +111,6 @@
 		08D32D6E1A9EC12400DB1BB7 /* PicViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicViewCell.m; sourceTree = "<group>"; };
 		08E60B891AA0556300864F82 /* PicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicViewController.h; sourceTree = "<group>"; };
 		08E60B8A1AA0556300864F82 /* PicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicViewController.m; sourceTree = "<group>"; };
-		08E60B8C1AA05C0100864F82 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
-		08E60B8D1AA05C0100864F82 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
 		08E60B8F1AA05C1C00864F82 /* VoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceViewController.h; sourceTree = "<group>"; };
 		08E60B901AA05C1C00864F82 /* VoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceViewController.m; sourceTree = "<group>"; };
 		08E60B921AA05C3200864F82 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
@@ -117,6 +118,14 @@
 		202B115954F51CEA088CD83B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		206A4AC557D9258154BD2730 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E94C0788BC727DD26D2C0FAD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F74C2E701ABAC3CF005FEBAD /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		F74C2E711ABAC3CF005FEBAD /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		F74C2E731ABAC442005FEBAD /* BaseViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewCell.h; sourceTree = "<group>"; };
+		F74C2E741ABAC442005FEBAD /* BaseViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewCell.m; sourceTree = "<group>"; };
+		F74C2E761ABAC5BB005FEBAD /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		F74C2E771ABAC5BB005FEBAD /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		F74C2E7A1ABAC6B8005FEBAD /* TextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextModel.h; sourceTree = "<group>"; };
+		F74C2E7B1ABAC6B8005FEBAD /* TextModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextModel.m; sourceTree = "<group>"; };
 		F7F3D7C51AB15E9B003367F5 /* place.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = place.jpg; sourceTree = "<group>"; };
 		F7F3D7C71AB17C42003367F5 /* PSCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCollectionView.h; path = PSCollectionView/PSCollectionView.h; sourceTree = "<group>"; };
 		F7F3D7C81AB17C42003367F5 /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCollectionView.m; path = PSCollectionView/PSCollectionView.m; sourceTree = "<group>"; };
@@ -191,7 +200,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		08B9DA341AA0433D004C39AF /* PICModel */ = {
+		08B9DA341AA0433D004C39AF /* PicModel */ = {
 			isa = PBXGroup;
 			children = (
 				08B9DA351AA04361004C39AF /* InfoModel.h */,
@@ -199,7 +208,7 @@
 				08B9DA381AA0440A004C39AF /* PicModel.h */,
 				08B9DA391AA0440A004C39AF /* PicModel.m */,
 			);
-			name = PICModel;
+			name = PicModel;
 			sourceTree = "<group>";
 		};
 		08C3E7151A8C9713009C97C2 /* Smill4iOS */ = {
@@ -262,8 +271,8 @@
 				08C3E71B1A8C9713009C97C2 /* BaseViewController.m */,
 				08E60B891AA0556300864F82 /* PicViewController.h */,
 				08E60B8A1AA0556300864F82 /* PicViewController.m */,
-				08E60B8C1AA05C0100864F82 /* TextViewController.h */,
-				08E60B8D1AA05C0100864F82 /* TextViewController.m */,
+				F74C2E701ABAC3CF005FEBAD /* TextViewController.h */,
+				F74C2E711ABAC3CF005FEBAD /* TextViewController.m */,
 				08E60B8F1AA05C1C00864F82 /* VoiceViewController.h */,
 				08E60B901AA05C1C00864F82 /* VoiceViewController.m */,
 				08E60B921AA05C3200864F82 /* VideoViewController.h */,
@@ -277,6 +286,8 @@
 			children = (
 				08D32D6D1A9EC12400DB1BB7 /* PicViewCell.h */,
 				08D32D6E1A9EC12400DB1BB7 /* PicViewCell.m */,
+				F74C2E731ABAC442005FEBAD /* BaseViewCell.h */,
+				F74C2E741ABAC442005FEBAD /* BaseViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -284,7 +295,10 @@
 		08D32D741A9F164B00DB1BB7 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				08B9DA341AA0433D004C39AF /* PICModel */,
+				F74C2E761ABAC5BB005FEBAD /* BaseModel.h */,
+				F74C2E771ABAC5BB005FEBAD /* BaseModel.m */,
+				F74C2E791ABAC695005FEBAD /* TextModel */,
+				08B9DA341AA0433D004C39AF /* PicModel */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -295,6 +309,15 @@
 				202B115954F51CEA088CD83B /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F74C2E791ABAC695005FEBAD /* TextModel */ = {
+			isa = PBXGroup;
+			children = (
+				F74C2E7A1ABAC6B8005FEBAD /* TextModel.h */,
+				F74C2E7B1ABAC6B8005FEBAD /* TextModel.m */,
+			);
+			name = TextModel;
 			sourceTree = "<group>";
 		};
 		F7F01FEB1AA7512B00B7AEAD /* PSCollectionView */ = {
@@ -475,16 +498,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08E60B8E1AA05C0100864F82 /* TextViewController.m in Sources */,
 				F7F3D7D01AB17C4E003367F5 /* THProgressView.m in Sources */,
 				08C3E73C1A8C9713009C97C2 /* BaseTabBarController.m in Sources */,
+				F74C2E781ABAC5BB005FEBAD /* BaseModel.m in Sources */,
+				F74C2E751ABAC442005FEBAD /* BaseViewCell.m in Sources */,
 				F7F3D7CC1AB17C42003367F5 /* PSCollectionViewCell.m in Sources */,
 				08E60B941AA05C3200864F82 /* VideoViewController.m in Sources */,
 				F7F3D7CB1AB17C42003367F5 /* PSCollectionView.m in Sources */,
+				F74C2E7C1ABAC6B8005FEBAD /* TextModel.m in Sources */,
 				08E60B8B1AA0556300864F82 /* PicViewController.m in Sources */,
 				08C3E73B1A8C9713009C97C2 /* AppDelegate.m in Sources */,
 				08B9DA371AA04361004C39AF /* InfoModel.m in Sources */,
 				08B9DA3A1AA0440A004C39AF /* PicModel.m in Sources */,
+				F74C2E721ABAC3CF005FEBAD /* TextViewController.m in Sources */,
 				08D32D6F1A9EC12400DB1BB7 /* PicViewCell.m in Sources */,
 				08C3E73D1A8C9713009C97C2 /* BaseViewController.m in Sources */,
 				08C3E7581A8C9713009C97C2 /* main.m in Sources */,

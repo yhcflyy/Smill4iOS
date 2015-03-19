@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "TextModel.h"
 
 @interface TextViewController : BaseViewController
 

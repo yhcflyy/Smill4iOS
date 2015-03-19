@@ -9,17 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "Config.h"
 #import "SVPullToRefresh.h"
-#import "PicViewCell.h"
+#import "BaseViewCell.h"
 #import "AFNetworking.h"
-#import "PicModel.h"
 #import "PSCollectionView.h"
 #import "PSCollectionViewCell.h"
+#import "TextModel.h"
 
 @interface BaseViewController : UIViewController
 @property(nonatomic,assign)CONTROLLER_TYPE type;
 @property(nonatomic,strong)PSCollectionView* collectionView;
-@property(nonatomic,strong)NSMutableArray<InfoModel>* modelsArray;
+@property(nonatomic,strong)NSMutableArray<BaseModel>* modelsArray;
 @property(nonatomic,strong)NSMutableArray* objectIdArray;
+@property(assign,nonatomic)int curPage;
+
 -(instancetype)initWithType:(CONTROLLER_TYPE)type title:(NSString*)title;
 
 -(void)refreshData;

@@ -42,7 +42,7 @@ int curPage;
     }];
     
     
-    [self.collectionView triggerPullToRefresh];
+    //[self.collectionView triggerPullToRefresh];//加载就更新
     [self.collectionView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
     [self.collectionView.pullToRefreshView setTitle:@"释放更新" forState:SVPullToRefreshStateTriggered];
     [self.collectionView.pullToRefreshView setTitle:@"更新..." forState:SVPullToRefreshStateLoading];
@@ -63,14 +63,8 @@ int curPage;
     [self.view addSubview:self.collectionView];
    
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    self.modelsArray=(NSMutableArray<InfoModel>*)[[NSMutableArray alloc] init];
+    self.modelsArray=(NSMutableArray<BaseModel>*)[[NSMutableArray alloc] init];
     self.objectIdArray=[[NSMutableArray alloc]init];
-
-
-  
-//    rect=self.collectionView.pullToRefreshView.frame;
-//    rect=CGRectMake(50, rect.origin.y, rect.size.width, rect.size.height);
-//    self.collectionView.pullToRefreshView.frame=rect;
 }
 -(void)refreshData{}
 -(void)LoadMore{}

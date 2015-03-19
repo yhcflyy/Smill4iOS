@@ -7,5 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "PicModel.h"
+#import "PicViewCell.h"
+
 @interface PicViewController : BaseViewController
 @end

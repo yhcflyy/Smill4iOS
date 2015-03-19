@@ -12,12 +12,10 @@
 
 
 @implementation PicViewController
-int curPage;
 
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self refreshData];
 }
 
 -(void)refreshData{
@@ -26,7 +24,7 @@ int curPage;
     NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":@"1",@"per":@"15"};
     [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",operation.response.URL);
-        curPage=1;
+        self.curPage=1;
         PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
         [self.modelsArray removeAllObjects];
         [self.objectIdArray removeAllObjects];
@@ -40,7 +38,7 @@ int curPage;
 
 -(void)LoadMore{
     __weak BaseViewController *weakSelf = self;
-    NSString *strPage=[[NSString alloc] initWithFormat:@"%d",++curPage];
+    NSString *strPage=[[NSString alloc] initWithFormat:@"%d",++self.curPage];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":strPage,@"per":@"15"};
@@ -55,7 +53,7 @@ int curPage;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        curPage--;
+        self.curPage--;
         [weakSelf.collectionView.infiniteScrollingView stopAnimating];
     }];
 }
