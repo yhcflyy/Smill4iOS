@@ -9,7 +9,7 @@
 #import "PicViewCell.h"
 #import "InfoModel.h"
 #import "UIImageView+WebCache.h"
-#import "UIImageView+ProgressView.h"
+#import "UIImageView+LK.h"
 
 
 @implementation PicViewCell
@@ -36,7 +36,7 @@
         
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         [self addSubview:self.contentLabel];
-    
+        
     }
     
     return self;
@@ -86,36 +86,20 @@
 
     
     self.contentImageView.frame = CGRectMake(left + MARGIN, MARGIN + HEAD_WIDTH+top + actualSize.height, width - 2* MARGIN, self.imageHeight -MARGIN);
+    
 }
 
 - (void)collectionView:(PSCollectionView *)collectionView fillCellWithObject:(id)object atIndex:(NSInteger)index {
     [super collectionView:collectionView fillCellWithObject:object atIndex:index];
     InfoModel *infoModel=object;
-    NSURL *showPicURL = [NSURL URLWithString:infoModel.imageUrl];
     self.contentLabel.text = infoModel.context;
     self.userNameLabel.text=infoModel.publisher;
     self.publishDateLabel.text=infoModel.publishDate;
-    
-    [self.contentImageView sd_setImageWithPreviousCachedImageWithURL:showPicURL
-                                                  andPlaceholderImage:nil
-                                                              options:0
-                                                             progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-         if (image) {
-             self.contentImageView.image = image;
-         }
-     }];
-    
-    [self.headImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:infoModel.headImageUrl]
-                                                 andPlaceholderImage:nil
-                                                             options:0
-                                                            progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                                                if (image) {
-                                                                    self.headImageView.image = image;
-                                                                }
-                                                            }];
-
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.headImageUrl]];
+    [UIImageView lk_setImageDownloadDelegate:self];
+    __weak UIImageView *weakImageView = self.contentImageView;
+    weakImageView.imageURL = [NSURL URLWithString:infoModel.imageUrl];
+    //[self.contentImageView sd_setImageWithURL:showPicURL placeholderImage:nil usingProgressView:progress];
 }
 
 @end

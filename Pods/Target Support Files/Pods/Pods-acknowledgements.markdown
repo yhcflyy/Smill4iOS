@@ -75,9 +75,9 @@ THE SOFTWARE.
 
 
 
-## SDWebImage-ProgressView
+## SDWebImage-Category
 
-Copyright (c) 2013 Kevin Renskers mixedCase.nl
+Copyright (c) 2012 Jianghuai Li (https://github.com/li6185377)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

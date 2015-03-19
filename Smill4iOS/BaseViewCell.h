@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PSCollectionViewCell.h"
-#import "THProgressView.h"
 #import "BaseModel.h"
 #import "Config.h"
 #import "UIImageView+WebCache.h"
-#import "UIImageView+ProgressView.h"
 
 
 @interface BaseViewCell : PSCollectionViewCell

@@ -81,16 +81,16 @@
     self.contentLabel.text = infoModel.context;
     self.userNameLabel.text=infoModel.publisher;
     self.publishDateLabel.text=infoModel.publishDate;
-
-    [self.headImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:infoModel.headImageUrl]
-                                              andPlaceholderImage:nil
-                                                          options:0
-                                                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                                             if (image) {
-                                                                 self.headImageView.image = image;
-                                                             }
-                                                         }];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.headImageUrl]];
+//    [self.headImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:infoModel.headImageUrl]
+//                                              andPlaceholderImage:nil
+//                                                          options:0
+//                                                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//                                                         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                                                             if (image) {
+//                                                                 self.headImageView.image = image;
+//                                                             }
+//                                                         }];
     
 }
 

@@ -8,7 +8,6 @@
 
 #import "PicViewController.h"
 #import "UIImageView+WebCache.h"
-#import "UIImageView+ProgressView.h"
 
 
 @implementation PicViewController

@@ -42,7 +42,7 @@ int curPage;
     }];
     
     
-    //[self.collectionView triggerPullToRefresh];//加载就更新
+    [self.collectionView triggerPullToRefresh];//加载就更新
     [self.collectionView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
     [self.collectionView.pullToRefreshView setTitle:@"释放更新" forState:SVPullToRefreshStateTriggered];
     [self.collectionView.pullToRefreshView setTitle:@"更新..." forState:SVPullToRefreshStateLoading];

@@ -8,7 +8,6 @@
 
 #import "TextViewController.h"
 #import "UIImageView+WebCache.h"
-#import "UIImageView+ProgressView.h"
 #import "BaseViewCell.h"
 
 @implementation TextViewController

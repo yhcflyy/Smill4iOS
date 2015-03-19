@@ -21,24 +21,24 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - JSONModel (1.0.2)
-  - SDWebImage (3.7.1):
-    - SDWebImage/Core (= 3.7.1)
-  - SDWebImage-ProgressView (0.4.0):
-    - SDWebImage (~> 3.7.0)
-  - SDWebImage/Core (3.7.1)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage-Category (1.4):
+    - SDWebImage
+  - SDWebImage/Core (3.7.2)
   - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - AFNetworking
   - JSONModel
-  - SDWebImage-ProgressView
+  - SDWebImage-Category
   - SVPullToRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   JSONModel: cbdef0fdff1cc70e913a860861d3072860efd3a1
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SDWebImage-ProgressView: 5b094a93013b3f6ae9d622b58055c942c964b678
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  SDWebImage-Category: 7e987b32b3f2dacdec43ae0604d3302e2ed04734
   SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0

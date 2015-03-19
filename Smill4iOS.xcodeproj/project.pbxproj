@@ -51,7 +51,6 @@
 		F7F3D7C61AB15E9B003367F5 /* place.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F7F3D7C51AB15E9B003367F5 /* place.jpg */; };
 		F7F3D7CB1AB17C42003367F5 /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F3D7C81AB17C42003367F5 /* PSCollectionView.m */; };
 		F7F3D7CC1AB17C42003367F5 /* PSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F3D7CA1AB17C42003367F5 /* PSCollectionViewCell.m */; };
-		F7F3D7D01AB17C4E003367F5 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F3D7CF1AB17C4E003367F5 /* THProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,8 +130,6 @@
 		F7F3D7C81AB17C42003367F5 /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCollectionView.m; path = PSCollectionView/PSCollectionView.m; sourceTree = "<group>"; };
 		F7F3D7C91AB17C42003367F5 /* PSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCollectionViewCell.h; path = PSCollectionView/PSCollectionViewCell.h; sourceTree = "<group>"; };
 		F7F3D7CA1AB17C42003367F5 /* PSCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCollectionViewCell.m; path = PSCollectionView/PSCollectionViewCell.m; sourceTree = "<group>"; };
-		F7F3D7CE1AB17C4E003367F5 /* THProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgressView.h; sourceTree = "<group>"; };
-		F7F3D7CF1AB17C4E003367F5 /* THProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,7 +211,6 @@
 		08C3E7151A8C9713009C97C2 /* Smill4iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F7F3D7CD1AB17C4E003367F5 /* THProgressView */,
 				F7F01FEB1AA7512B00B7AEAD /* PSCollectionView */,
 				08D32D741A9F164B00DB1BB7 /* model */,
 				08D32D6C1A9EB3D600DB1BB7 /* view */,
@@ -329,15 +325,6 @@
 				F7F3D7CA1AB17C42003367F5 /* PSCollectionViewCell.m */,
 			);
 			name = PSCollectionView;
-			sourceTree = "<group>";
-		};
-		F7F3D7CD1AB17C4E003367F5 /* THProgressView */ = {
-			isa = PBXGroup;
-			children = (
-				F7F3D7CE1AB17C4E003367F5 /* THProgressView.h */,
-				F7F3D7CF1AB17C4E003367F5 /* THProgressView.m */,
-			);
-			path = THProgressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,7 +485,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7F3D7D01AB17C4E003367F5 /* THProgressView.m in Sources */,
 				08C3E73C1A8C9713009C97C2 /* BaseTabBarController.m in Sources */,
 				F74C2E781ABAC5BB005FEBAD /* BaseModel.m in Sources */,
 				F74C2E751ABAC442005FEBAD /* BaseViewCell.m in Sources */,

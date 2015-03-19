@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PSCollectionViewCell.h"
-#import "THProgressView.h"
 #import "InfoModel.h"
 #import "Config.h"
 
@@ -20,6 +19,5 @@
 @property(strong,nonatomic) UIImageView *contentImageView;
 @property(strong,nonatomic) UILabel *contentLabel;
 
-@property(strong,nonatomic) THProgressView *progressView;
 @property(assign,nonatomic) CGFloat imageHeight;
 @end
