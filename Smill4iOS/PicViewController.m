@@ -26,13 +26,13 @@
         self.curPage=1;
         PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
         [self.modelsArray removeAllObjects];
-        [self.objectIdArray removeAllObjects];
         [self.modelsArray addObjectsFromArray:picModel.list];
         [self dataSourceDidLoad];
-        [weakSelf.collectionView.pullToRefreshView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [weakSelf.collectionView.pullToRefreshView stopAnimating];
+        NSLog(@"%@",error);
     }];
+    [weakSelf.collectionView.header endRefreshing];
+
 }
 
 -(void)LoadMore{
@@ -47,14 +47,14 @@
             PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
             [self.modelsArray addObjectsFromArray:picModel.list];
             [self dataSourceDidLoad];
-            [weakSelf.collectionView.infiniteScrollingView stopAnimating];
         });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         self.curPage--;
-        [weakSelf.collectionView.infiniteScrollingView stopAnimating];
     }];
+    [weakSelf.collectionView.header endRefreshing];
+
 }
 
 - (void)dataSourceDidLoad {

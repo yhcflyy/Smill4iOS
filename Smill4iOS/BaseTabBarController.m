@@ -53,7 +53,6 @@
     NSMutableArray* navArray=[[NSMutableArray alloc] init];
     for (BaseViewController* baseCtl in baseViewCtlArray) {
         UINavigationController *nav=[[UINavigationController alloc] initWithRootViewController:baseCtl];
-        //nav.navigationBar.translucent = YES;
         [navArray addObject:nav];
     }
         

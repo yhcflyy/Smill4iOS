@@ -17,7 +17,6 @@
 
 @synthesize type=_type;
 
-int curPage;
 
 -(instancetype)initWithType:(CONTROLLER_TYPE)type title:(NSString*)title{
     self=[super init];
@@ -30,28 +29,20 @@ int curPage;
 
 -(void)viewDidAppear:(BOOL)animated{
     __weak BaseViewController* weakSelf=self;
-    
-    
-    [self.collectionView addPullToRefreshWithActionHandler:^{
+
+    [self.collectionView addLegendHeaderWithRefreshingBlock:^{
         [weakSelf refreshData];
     }];
+    [self.collectionView.header beginRefreshing];
     
-    // setup infinite scrolling
-    [self.collectionView addInfiniteScrollingWithActionHandler:^{
+    [self.collectionView addLegendFooterWithRefreshingBlock:^{
         [weakSelf LoadMore];
     }];
-    
-    
-    [self.collectionView triggerPullToRefresh];//加载就更新
-    [self.collectionView.pullToRefreshView setTitle:@"下拉刷新" forState:SVPullToRefreshStateStopped];
-    [self.collectionView.pullToRefreshView setTitle:@"释放更新" forState:SVPullToRefreshStateTriggered];
-    [self.collectionView.pullToRefreshView setTitle:@"更新..." forState:SVPullToRefreshStateLoading];
    }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout=UIRectEdgeNone;
-    curPage=1;
+    self.curPage=0;
     self.navigationItem.title=self.title;
     CGRect rect=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     self.collectionView=[[PSCollectionView alloc]initWithFrame:rect ];
@@ -64,7 +55,6 @@ int curPage;
    
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     self.modelsArray=(NSMutableArray<BaseModel>*)[[NSMutableArray alloc] init];
-    self.objectIdArray=[[NSMutableArray alloc]init];
 }
 -(void)refreshData{}
 -(void)LoadMore{}

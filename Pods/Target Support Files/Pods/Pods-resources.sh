@@ -51,6 +51,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/MJRefresh.bundle"
   install_resource "SDWebImage-Category/SDWebImage-Category/Resource/lk_click_image.png"
   install_resource "SDWebImage-Category/SDWebImage-Category/Resource/lk_click_image@2x.png"
   install_resource "SDWebImage-Category/SDWebImage-Category/Resource/lk_click_image@3x.png"
@@ -58,6 +59,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "SDWebImage-Category/SDWebImage-Category/Resource/lk_noimage@2x.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/MJRefresh.bundle"
   install_resource "SDWebImage-Category/SDWebImage-Category/Resource/lk_click_image.png"
   install_resource "SDWebImage-Category/SDWebImage-Category/Resource/lk_click_image@2x.png"
   install_resource "SDWebImage-Category/SDWebImage-Category/Resource/lk_click_image@3x.png"
