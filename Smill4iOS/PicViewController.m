@@ -10,8 +10,6 @@
 #import "UIImageView+WebCache.h"
 #import "UIImageView+ProgressView.h"
 
-#define MARGIN 8.0
-
 
 @implementation PicViewController
 int curPage;
@@ -80,7 +78,15 @@ int curPage;
     if(cell == nil){
         cell= [[PicViewCell alloc] initWithFrame:CGRectZero];
     }
-
+    CGFloat width=self.view.frame.size.width - MARGIN*2;
+    CGFloat objectWidth =infoModel.picWidth;
+    CGFloat objectHeight =infoModel.picHeight;
+    CGFloat scaledHeight=((CGFloat)objectHeight/objectWidth)*width;
+    
+       
+    cell.imageHeight=scaledHeight;
+    cell.layer.cornerRadius = 4;
+    cell.layer.masksToBounds = YES;
     cell.backgroundColor=[UIColor whiteColor];
     [cell collectionView:self.collectionView fillCellWithObject:infoModel atIndex:index];
     return cell;
@@ -88,17 +94,19 @@ int curPage;
 }
 
 - (CGFloat)collectionView:(PSCollectionView *)collectionView heightForRowAtIndex:(NSInteger)index {
-     InfoModel *infoModel=self.modelsArray[index];
+    InfoModel *infoModel=self.modelsArray[index];
     
     CGFloat height = 0.0;
     CGFloat width=self.view.frame.size.width - MARGIN*2;
     
-    height += MARGIN;
+    height += MARGIN*2;
     
     // Image
     CGFloat objectWidth =infoModel.picWidth;
     CGFloat objectHeight =infoModel.picHeight;
-    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+    //CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+    CGFloat scaledHeight=((CGFloat)objectHeight/objectWidth)*width;
+
     height += scaledHeight;
     // Label
     //基本设置
@@ -108,9 +116,7 @@ int curPage;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil];
     //实际尺寸
     CGSize actualSize = [infoModel.context boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
-    
-    
-    height += actualSize.height;
+    height += actualSize.height + HEAD_WIDTH;
     
     return height;
 }

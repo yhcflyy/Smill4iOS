@@ -15,6 +15,7 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"name": @"publisher",
                                                        @"created_at": @"publishDate",
+                                                       @"profile_image":@"headImageUrl",
                                                        @"text": @"context",
                                                        @"width": @"picWidth",
                                                        @"height": @"picHeight",

@@ -11,7 +11,6 @@
 #import "UIImageView+WebCache.h"
 #import "UIImageView+ProgressView.h"
 
-#define MARGIN 8.0
 
 @implementation PicViewCell
 
@@ -21,12 +20,22 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.headImageView=[[UIImageView alloc]initWithFrame:CGRectZero];
+        self.headImageView.contentMode=UIViewContentModeScaleAspectFill;
+        [self addSubview:self.headImageView];
+        
+        self.userNameLabel=[[UILabel alloc] initWithFrame:CGRectZero];
+        [self addSubview:self.userNameLabel];
+        
+        self.publishDateLabel=[[UILabel alloc] initWithFrame:CGRectZero];
+        [self addSubview:self.publishDateLabel];
+        
         self.contentImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         self.contentImageView.contentMode=UIViewContentModeScaleAspectFill;
         [self addSubview:self.contentImageView];
         
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        [self addSubview:self.titleLabel];
+        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [self addSubview:self.contentLabel];
     
     }
     
@@ -38,7 +47,7 @@
     [super prepareForReuse];
     
     self.contentImageView.image = nil;
-    self.titleLabel.text = nil;
+    self.contentLabel.text = nil;
 }
 
 
@@ -50,14 +59,22 @@
     CGFloat width = self.frame.size.width - MARGIN * 2;
     CGFloat top = MARGIN;
     CGFloat left = MARGIN;
-    //基本设置
+    
+    //个人资料
+    self.headImageView.frame=CGRectMake(MARGIN, MARGIN, HEAD_WIDTH, HEAD_WIDTH);
+    self.userNameLabel.frame=CGRectMake(MARGIN+HEAD_WIDTH + 5, MARGIN, width - 100, HEAD_WIDTH*0.5);
+    self.userNameLabel.font=[UIFont systemFontOfSize:13];
+    self.publishDateLabel.frame=CGRectMake(MARGIN+HEAD_WIDTH + 5, MARGIN + HEAD_WIDTH*0.5, width - 100, HEAD_WIDTH*0.5);
+    self.publishDateLabel.font=[UIFont systemFontOfSize:9];
+
+    //内容
     UIFont *textFont = [UIFont systemFontOfSize:17.0f];
-    self.titleLabel.font = textFont;
+    self.contentLabel.font = textFont;
+
     //折行
-    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //必须写，否则只显示一行
-    [self.titleLabel setNumberOfLines:0];
-    //[self addSubview:self.titleLabel];
+    [self.contentLabel setNumberOfLines:0];
     //最大尺寸
     // MAXFLOAT 为可设置的最大高度
     CGSize size = CGSizeMake(300, MAXFLOAT);
@@ -65,49 +82,39 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil];
     //实际尺寸
     CGSize actualSize = [infoModel.context boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
-    self.titleLabel.frame = CGRectMake(0, 0, actualSize.width,actualSize.height);
-   
-    self.height=actualSize.height;
-    self.width=actualSize.width;
+    self.contentLabel.frame = CGRectMake(MARGIN, HEAD_WIDTH + 2*MARGIN -5, width ,actualSize.height);
+
     
-    // Image
-    CGFloat objectWidth, objectHeight;
-    if (infoModel.picWidth == 0) {
-        objectWidth = 200.0f;
-    } else {
-        objectWidth = infoModel.picWidth;
-    }
-    if (infoModel.picHeight == 0) {
-        objectHeight = 200.0f;
-    } else {
-        objectHeight = infoModel.picHeight;
-    }
-    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
-    self.contentImageView.frame = CGRectMake(left, top + actualSize.height, width, scaledHeight);
-    self.height += scaledHeight;
-    
-  
-  
+    self.contentImageView.frame = CGRectMake(left + MARGIN, MARGIN + HEAD_WIDTH+top + actualSize.height, width - 2* MARGIN, self.imageHeight -MARGIN);
 }
 
 - (void)collectionView:(PSCollectionView *)collectionView fillCellWithObject:(id)object atIndex:(NSInteger)index {
     [super collectionView:collectionView fillCellWithObject:object atIndex:index];
-    
-   
-    
     InfoModel *infoModel=object;
     NSURL *showPicURL = [NSURL URLWithString:infoModel.imageUrl];
-    self.titleLabel.text = infoModel.context;
+    self.contentLabel.text = infoModel.context;
+    self.userNameLabel.text=infoModel.publisher;
+    self.publishDateLabel.text=infoModel.publishDate;
+    
     [self.contentImageView sd_setImageWithPreviousCachedImageWithURL:showPicURL
                                                   andPlaceholderImage:nil
                                                               options:0
                                                              progress:^(NSInteger receivedSize, NSInteger expectedSize) {
      } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-         //progressView=nil;
          if (image) {
              self.contentImageView.image = image;
          }
      }];
+    
+    [self.headImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:infoModel.headImageUrl]
+                                                 andPlaceholderImage:nil
+                                                             options:0
+                                                            progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                                                if (image) {
+                                                                    self.headImageView.image = image;
+                                                                }
+                                                            }];
 
 }
 

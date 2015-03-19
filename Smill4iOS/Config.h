@@ -16,7 +16,8 @@ typedef NS_ENUM(NSUInteger,CONTROLLER_TYPE){
     CONTROLLER_TYPE_VIDEO=41
 };
 
-
+#define MARGIN 8.0
+#define HEAD_WIDTH 30.0
 
 #define CONTENT_TYPE_TEXT  @"段子"
 #define CONTENT_TYPE_PIC   @"图片"

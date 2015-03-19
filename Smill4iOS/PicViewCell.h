@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PSCollectionViewCell.h"
 #import "THProgressView.h"
+#import "InfoModel.h"
+#import "Config.h"
 
 @interface PicViewCell : PSCollectionViewCell
 
+@property(strong,nonatomic) UIImageView *headImageView;
+@property(strong,nonatomic) UILabel *publishDateLabel;
+@property(strong,nonatomic) UILabel *userNameLabel;
 @property(strong,nonatomic) UIImageView *contentImageView;
-@property(strong,nonatomic) UILabel *titleLabel;
-@property(strong,nonatomic) THProgressView *progressView;
-@property(assign,nonatomic) int height;
-@property(assign,nonatomic) int width;
+@property(strong,nonatomic) UILabel *contentLabel;
 
+@property(strong,nonatomic) THProgressView *progressView;
+@property(assign,nonatomic) CGFloat imageHeight;
 @end
