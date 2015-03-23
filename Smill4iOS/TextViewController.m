@@ -75,7 +75,10 @@
         cell= [[BaseViewCell alloc] initWithFrame:CGRectZero];
     }
     cell.layer.cornerRadius = 4;
-    cell.layer.masksToBounds = YES;
+    //cell.layer.masksToBounds = YES;
+    cell.layer.shadowOpacity=0.5f;
+    cell.layer.shadowOffset=CGSizeMake(0, 3);
+    cell.layer.shadowRadius=5;
     cell.backgroundColor=[UIColor whiteColor];
     [cell collectionView:self.collectionView fillCellWithObject:textModel atIndex:index];
     return cell;

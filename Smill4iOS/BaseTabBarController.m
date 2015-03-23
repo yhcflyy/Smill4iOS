@@ -30,8 +30,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    //self.delegate=self;
-
     TextViewController* textCtl=[[TextViewController alloc] initWithType:CONTROLLER_TYPE_TEXT title:CONTENT_TYPE_TEXT];
     textCtl.tabBarItem=[[UITabBarItem alloc]initWithTitle:CONTENT_TYPE_TEXT image:[self getImage:@"tabbarEssay.png"]
                                            selectedImage:[self getImage:@"tabbarEssayClick.png"]];
@@ -61,7 +59,8 @@
     for (UITabBarItem *item in  self.tabBar.items) {
         [self changeTabBarItemFont:item];
     }
-    [self.tabBar setAlpha:0.95];
+    //TabBar设置成不透明
+    self.tabBar.translucent=NO;
 }
 
 
