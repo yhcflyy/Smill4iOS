@@ -107,7 +107,6 @@
     CGFloat objectHeight =infoModel.picHeight;
     //CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
     CGFloat scaledHeight=((CGFloat)objectHeight/objectWidth)*width;
-
     height += scaledHeight;
     // Label
     //基本设置
@@ -123,7 +122,6 @@
 }
 
 - (void)collectionView:(PSCollectionView *)collectionView didSelectCell:(PSCollectionViewCell *)cell atIndex:(NSInteger)index {
-    
 }
 
 @end
