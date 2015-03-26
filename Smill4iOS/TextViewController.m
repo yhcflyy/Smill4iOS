@@ -16,6 +16,7 @@
     [super viewDidLoad];
 }
 
+
 -(void)refreshData{
     __weak TextViewController *weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -27,11 +28,11 @@
         [self.modelsArray removeAllObjects];
         [self.modelsArray addObjectsFromArray:picModel.list];
         [self dataSourceDidLoad];
+        [weakSelf.collectionView.header endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [weakSelf.collectionView.header endRefreshing];
         NSLog(@"%@",error);
     }];
-    [weakSelf.collectionView.header endRefreshing];
-
 }
 
 -(void)LoadMore{
@@ -42,25 +43,22 @@
     NSDictionary *parameters = @{@"a": @"list",@"type":@"29",@"c":@"data",@"page":strPage,@"per":@"15"};
     [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",operation.response.URL);
+        [weakSelf.collectionView.footer endRefreshing];
         dispatch_main_sync_safe(^{
             TextModel *picModel=[[TextModel alloc] initWithDictionary:responseObject error:nil];
             [self.modelsArray addObjectsFromArray:picModel.list];
             [self dataSourceDidLoad];
         });
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         self.curPage--;
+        [weakSelf.collectionView.footer endRefreshing];
     }];
-    [weakSelf.collectionView.header endRefreshing];
-
 }
 
 - (void)dataSourceDidLoad {
     [self.collectionView reloadData];
 }
-
-
 
 
 - (NSInteger)numberOfRowsInCollectionView:(PSCollectionView *)collectionView {
@@ -75,10 +73,10 @@
         cell= [[BaseViewCell alloc] initWithFrame:CGRectZero];
     }
     cell.layer.cornerRadius = 4;
-    //cell.layer.masksToBounds = YES;
-    cell.layer.shadowOpacity=0.5f;
-    cell.layer.shadowOffset=CGSizeMake(0, 3);
-    cell.layer.shadowRadius=5;
+//    //cell阴影
+//    cell.layer.shadowOpacity=0.5f;
+//    cell.layer.shadowOffset=CGSizeMake(0, 3);
+//    cell.layer.shadowRadius=5;
     cell.backgroundColor=[UIColor whiteColor];
     [cell collectionView:self.collectionView fillCellWithObject:textModel atIndex:index];
     return cell;

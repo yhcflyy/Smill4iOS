@@ -48,7 +48,6 @@
     BaseModel *infoModel=self.object;
     
     CGFloat width = self.frame.size.width - MARGIN * 2;
-    
     //个人资料
     self.headImageView.frame=CGRectMake(MARGIN, MARGIN, HEAD_WIDTH, HEAD_WIDTH);
     self.userNameLabel.frame=CGRectMake(MARGIN+HEAD_WIDTH + 5, MARGIN, width - 100, HEAD_WIDTH*0.5);
@@ -57,7 +56,7 @@
     self.publishDateLabel.font=[UIFont systemFontOfSize:9];
     
     //内容
-    UIFont *textFont = [UIFont systemFontOfSize:17.0f];
+    UIFont *textFont = [UIFont systemFontOfSize:16.0f];
     self.contentLabel.font = textFont;
     
     //折行
@@ -66,7 +65,7 @@
     [self.contentLabel setNumberOfLines:0];
     //最大尺寸
     // MAXFLOAT 为可设置的最大高度
-    CGSize size = CGSizeMake(300, MAXFLOAT);
+    CGSize size = CGSizeMake(width, MAXFLOAT);
     //获取当前那本属性
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil];
     //实际尺寸

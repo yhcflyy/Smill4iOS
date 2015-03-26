@@ -28,10 +28,12 @@
         [self.modelsArray removeAllObjects];
         [self.modelsArray addObjectsFromArray:picModel.list];
         [self dataSourceDidLoad];
+        [weakSelf.collectionView.header endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
+        [weakSelf.collectionView.header endRefreshing];
+
     }];
-    [weakSelf.collectionView.header endRefreshing];
 
 }
 
@@ -43,6 +45,7 @@
     NSDictionary *parameters = @{@"a": @"list",@"type":@"10",@"c":@"data",@"page":strPage,@"per":@"15"};
     [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",operation.response.URL);
+        [weakSelf.collectionView.footer endRefreshing];
         dispatch_main_sync_safe(^{
             PicModel *picModel=[[PicModel alloc] initWithDictionary:responseObject error:nil];
             [self.modelsArray addObjectsFromArray:picModel.list];
@@ -50,11 +53,10 @@
         });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [weakSelf.collectionView.footer endRefreshing];
         NSLog(@"Error: %@", error);
         self.curPage--;
     }];
-    [weakSelf.collectionView.header endRefreshing];
-
 }
 
 - (void)dataSourceDidLoad {
@@ -84,9 +86,9 @@
     cell.imageHeight=scaledHeight;
     cell.layer.cornerRadius = 4;
     //cell.layer.masksToBounds = YES;
-    cell.layer.shadowOpacity=0.5f;
-    cell.layer.shadowOffset=CGSizeMake(0, 3);
-    cell.layer.shadowRadius=5;
+//    cell.layer.shadowOpacity=0.5f;
+//    cell.layer.shadowOffset=CGSizeMake(0, 3);
+//    cell.layer.shadowRadius=5;
     
     cell.backgroundColor=[UIColor whiteColor];
     [cell collectionView:self.collectionView fillCellWithObject:infoModel atIndex:index];
