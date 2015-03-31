@@ -18,6 +18,6 @@
 @property(strong,nonatomic) UILabel *userNameLabel;
 @property(strong,nonatomic) UIImageView *contentImageView;
 @property(strong,nonatomic) UILabel *contentLabel;
-
 @property(assign,nonatomic) CGFloat imageHeight;
+
 @end

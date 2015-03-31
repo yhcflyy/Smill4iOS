@@ -78,7 +78,7 @@
     //最大尺寸
     // MAXFLOAT 为可设置的最大高度
     CGSize size = CGSizeMake(300, MAXFLOAT);
-    //获取当前那本属性
+    //获取当前那本属性s
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil];
     //实际尺寸
     CGSize actualSize = [infoModel.context boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
