@@ -8,7 +8,7 @@
 
 #import "VideoInfo.h"
 
-@implementation VideoInfo
+@implementation VoiceInfo
 
 +(JSONKeyMapper*)keyMapper
 {
@@ -18,8 +18,8 @@
                                                        @"profile_image":@"headImageUrl",
                                                        @"text": @"context",
                                                        @"id": @"modelID",
-                                                       @"width":@"imageWidth",
-                                                       @"height":@"imageHeight",
+                                                       @"width":@"videoWidth",
+                                                       @"height":@"videoHeight",
                                                        @"cdn_img":@"imageURL",
                                                        @"videouri":@"videoURL",
                                                        @"videotime":@"videoTime"

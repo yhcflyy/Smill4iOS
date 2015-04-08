@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
 
-@protocol VideoInfo @end
+@protocol VoiceInfo @end
 
-@interface VideoInfo : BaseModel
+@interface VoiceInfo : BaseModel
 @property(assign,nonatomic)int imageWidth;
 @property(assign,nonatomic)int imageHeight;
 @property(strong,nonatomic)NSString* imageURL;
-@property(strong,nonatomic)NSString* videoURL;
-@property(assign,nonatomic)int videoTime;
+@property(strong,nonatomic)NSString* voiceURL;
+@property(assign,nonatomic)int voiceTime;
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 flyy. All rights reserved.
 //
 
-#import "VideoInfo.h"
+#import "VoiceInfo.h"
 
-@implementation VideoInfo
+@implementation VoiceInfo
 
 +(JSONKeyMapper*)keyMapper
 {
@@ -21,8 +21,8 @@
                                                        @"width":@"imageWidth",
                                                        @"height":@"imageHeight",
                                                        @"cdn_img":@"imageURL",
-                                                       @"videouri":@"videoURL",
-                                                       @"videotime":@"videoTime"
+                                                       @"voiceuri":@"voiceURL",
+                                                       @"voicetime":@"voiceTime"
                                                        }];
 }
 

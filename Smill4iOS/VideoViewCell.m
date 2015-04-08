@@ -70,7 +70,7 @@
         [self removeNotification];
         [self addNotification];
         [self addProgressObserver];
-    self.videoView.layer.backgroundColor=[UIColor greenColor].CGColor;
+    //self.videoView.layer.backgroundColor=[UIColor greenColor].CGColor;
     CGRect rect=self.videoView.layer.frame;
 
   self.progressView.frame=CGRectMake(rect.origin.x,rect.origin.y + rect.size.height - 10, rect.size.width,5);
@@ -132,7 +132,7 @@
     //实际尺寸
     CGSize actualSize = [infoModel.context boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
     self.contentLabel.frame = CGRectMake(MARGIN, HEAD_WIDTH + 2*MARGIN -5, width ,actualSize.height);
-    self.videoView.frame = CGRectMake(left + MARGIN, MARGIN + HEAD_WIDTH+top + actualSize.height, width - 2* MARGIN, infoModel.videoHeight*0.5 -MARGIN);
+    self.videoView.frame = CGRectMake(left + MARGIN, MARGIN + HEAD_WIDTH+top + actualSize.height, width - 2* MARGIN, infoModel.imageHeight*0.5 -MARGIN);
     //self.progressView.frame=CGRectMake(left + MARGIN, self.imageHeight + HEAD_WIDTH+top + actualSize.height -10, self.videoView.frame.size.width,10);
     
     self.playBtn.frame=CGRectMake(0,0, 71, 71);

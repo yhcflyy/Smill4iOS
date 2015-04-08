@@ -55,6 +55,9 @@
 		F777FADC1AC64CE100ACFEE6 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F777FADB1AC64CE100ACFEE6 /* VideoModel.m */; };
 		F777FADF1AC64D2100ACFEE6 /* VideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F777FADE1AC64D2100ACFEE6 /* VideoInfo.m */; };
 		F777FAE21AC6508500ACFEE6 /* VideoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F777FAE11AC6508500ACFEE6 /* VideoViewCell.m */; };
+		F7C3A9451AD578E6004D1C3B /* VoiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C3A9421AD578E6004D1C3B /* VoiceInfo.m */; };
+		F7C3A9461AD578E6004D1C3B /* VoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C3A9441AD578E6004D1C3B /* VoiceModel.m */; };
+		F7C3A9491AD57C07004D1C3B /* VoiceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C3A9481AD57C07004D1C3B /* VoiceViewCell.m */; };
 		F7F3D7C61AB15E9B003367F5 /* place.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F7F3D7C51AB15E9B003367F5 /* place.jpg */; };
 		F7F3D7CB1AB17C42003367F5 /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F3D7C81AB17C42003367F5 /* PSCollectionView.m */; };
 		F7F3D7CC1AB17C42003367F5 /* PSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F3D7CA1AB17C42003367F5 /* PSCollectionViewCell.m */; };
@@ -143,6 +146,12 @@
 		F777FADE1AC64D2100ACFEE6 /* VideoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoInfo.m; sourceTree = "<group>"; };
 		F777FAE01AC6508500ACFEE6 /* VideoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewCell.h; sourceTree = "<group>"; };
 		F777FAE11AC6508500ACFEE6 /* VideoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewCell.m; sourceTree = "<group>"; };
+		F7C3A9411AD578E6004D1C3B /* VoiceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceInfo.h; sourceTree = "<group>"; };
+		F7C3A9421AD578E6004D1C3B /* VoiceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceInfo.m; sourceTree = "<group>"; };
+		F7C3A9431AD578E6004D1C3B /* VoiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceModel.h; sourceTree = "<group>"; };
+		F7C3A9441AD578E6004D1C3B /* VoiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceModel.m; sourceTree = "<group>"; };
+		F7C3A9471AD57C07004D1C3B /* VoiceViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceViewCell.h; sourceTree = "<group>"; };
+		F7C3A9481AD57C07004D1C3B /* VoiceViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceViewCell.m; sourceTree = "<group>"; };
 		F7F3D7C51AB15E9B003367F5 /* place.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = place.jpg; sourceTree = "<group>"; };
 		F7F3D7C71AB17C42003367F5 /* PSCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCollectionView.h; path = PSCollectionView/PSCollectionView.h; sourceTree = "<group>"; };
 		F7F3D7C81AB17C42003367F5 /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCollectionView.m; path = PSCollectionView/PSCollectionView.m; sourceTree = "<group>"; };
@@ -308,6 +317,8 @@
 				F74C2E741ABAC442005FEBAD /* BaseViewCell.m */,
 				F777FAE01AC6508500ACFEE6 /* VideoViewCell.h */,
 				F777FAE11AC6508500ACFEE6 /* VideoViewCell.m */,
+				F7C3A9471AD57C07004D1C3B /* VoiceViewCell.h */,
+				F7C3A9481AD57C07004D1C3B /* VoiceViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -315,6 +326,7 @@
 		08D32D741A9F164B00DB1BB7 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F7C3A9341AD56613004D1C3B /* VoiceModel */,
 				F74C2E791ABAC695005FEBAD /* TextModel */,
 				08B9DA341AA0433D004C39AF /* PicModel */,
 				F777FAD91AC64C9000ACFEE6 /* VideoModel */,
@@ -360,6 +372,17 @@
 				F777FADE1AC64D2100ACFEE6 /* VideoInfo.m */,
 			);
 			name = VideoModel;
+			sourceTree = "<group>";
+		};
+		F7C3A9341AD56613004D1C3B /* VoiceModel */ = {
+			isa = PBXGroup;
+			children = (
+				F7C3A9411AD578E6004D1C3B /* VoiceInfo.h */,
+				F7C3A9421AD578E6004D1C3B /* VoiceInfo.m */,
+				F7C3A9431AD578E6004D1C3B /* VoiceModel.h */,
+				F7C3A9441AD578E6004D1C3B /* VoiceModel.m */,
+			);
+			name = VoiceModel;
 			sourceTree = "<group>";
 		};
 		F7F01FEB1AA7512B00B7AEAD /* PSCollectionView */ = {
@@ -534,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C3E73C1A8C9713009C97C2 /* BaseTabBarController.m in Sources */,
+				F7C3A9491AD57C07004D1C3B /* VoiceViewCell.m in Sources */,
 				F777FADF1AC64D2100ACFEE6 /* VideoInfo.m in Sources */,
 				F777FADC1AC64CE100ACFEE6 /* VideoModel.m in Sources */,
 				F74C2E781ABAC5BB005FEBAD /* BaseModel.m in Sources */,
@@ -549,9 +573,11 @@
 				08B9DA3A1AA0440A004C39AF /* PicModel.m in Sources */,
 				F74C2E721ABAC3CF005FEBAD /* TextViewController.m in Sources */,
 				08D32D6F1A9EC12400DB1BB7 /* PicViewCell.m in Sources */,
+				F7C3A9451AD578E6004D1C3B /* VoiceInfo.m in Sources */,
 				08C3E73D1A8C9713009C97C2 /* BaseViewController.m in Sources */,
 				08C3E7581A8C9713009C97C2 /* main.m in Sources */,
 				08E60B911AA05C1C00864F82 /* VoiceViewController.m in Sources */,
+				F7C3A9461AD578E6004D1C3B /* VoiceModel.m in Sources */,
 				F74284D31ACA8AA4004AE958 /* AVPlayerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

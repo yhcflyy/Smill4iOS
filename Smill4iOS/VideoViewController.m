@@ -19,7 +19,7 @@
 
 
 -(void)refreshData{
-    __weak BaseViewController *weakSelf = self;
+    __weak VideoViewController *weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"a": @"newlist",@"type":@"41",@"c":@"video",@"page":@"1",@"per":@"15"};
     [manager GET:API_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -39,7 +39,7 @@
 }
 
 -(void)LoadMore{
-    __weak BaseViewController *weakSelf = self;
+    __weak VideoViewController *weakSelf = self;
     NSString *strPage=[[NSString alloc] initWithFormat:@"%d",++self.curPage];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -82,8 +82,8 @@
         cell= [[VideoViewCell alloc] initWithFrame:CGRectZero];
     }
     CGFloat width=self.view.frame.size.width - MARGIN*2;
-    CGFloat objectWidth =infoModel.videoWidth;
-    CGFloat objectHeight =infoModel.videoHeight;
+    CGFloat objectWidth =infoModel.imageWidth;
+    CGFloat objectHeight =infoModel.imageHeight;
     CGFloat scaledHeight=((CGFloat)objectHeight/objectWidth)*width;
     
     //cell.imageHeight=scaledHeight;
@@ -109,8 +109,8 @@
     height += MARGIN*2;
     
     // Image
-    CGFloat objectWidth =infoModel.videoWidth;
-    CGFloat objectHeight =infoModel.videoHeight;
+    CGFloat objectWidth =infoModel.imageWidth;
+    CGFloat objectHeight =infoModel.imageHeight;
     if (objectHeight > objectWidth) {
         //CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
         CGFloat scaledHeight=objectHeight*0.5;
